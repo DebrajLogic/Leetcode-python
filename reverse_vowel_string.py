@@ -72,12 +72,24 @@ def is_vowel(char):
 
 
 def reverseVowels(s):
-    result = []
-    for char in s:
-        if is_vowel(char):
-            result.append('vowel')
-        else:
-            result.append('_')
+    store = []
+    string = [char for char in s]
+    for i in range(0, len(string)):
+        if is_vowel(string[i]):
+            store.append(string[i])
+            string[i] = '_'
+
+    store = reverseString(store)
+    index = 0
+    for i in range(0, len(string)):
+        if string[i] == '_':
+            string[i] = store[index]
+            index += 1
+
+    result = ''
+    for char in string:
+        result += char
+
     return result
 
 
@@ -86,6 +98,6 @@ def reverseVowels(s):
 # result = reverseVowels(s)
 # print(result)
 
-s = "lEetcOde"
-result = sortVowels(s)
+s = "leetcode"
+result = reverseVowels(s)
 print(result)
