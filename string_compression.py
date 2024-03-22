@@ -29,26 +29,25 @@ from output_decorator import output
 
 @output
 def compress(chars):
-    char_count = {}
+    read_ptr = 0
 
-    for char in chars:
-        if char in char_count:
-            char_count[char] += 1
-        else:
-            char_count[char] = 1
+    s = []
 
-    chars = []
-    for key, value in char_count.items():
-        chars.append(str(key))
+    while read_ptr < len(chars):
+        current_char = chars[read_ptr]
+        count = 0
 
-        if value == 1:
-            continue
+        while read_ptr < len(chars) and current_char == chars[read_ptr]:
+            read_ptr += 1
+            count += 1
 
-        if value > 1:
-            for digit in str(value):
-                chars.append(digit)
+        s.append(current_char)
 
-    return chars
+        if count > 1:
+            for digit in str(count):
+                s.append(digit)
+
+    return s
 
 
 chars = ["a", "a", "a", "b", "b", "a", "a"]
