@@ -33,15 +33,30 @@ def maxProduct(nums):
 
     return max_product
 
-
-def constructProductMatrix(grid):
-    rows = len(grid)
-    cols = 1
-    p = [0 for col in range(cols) for row in range(rows)]
-
-    return p
+# Main Question
 
 
-grid = [[1, 2], [3, 4]]
-result = constructProductMatrix(grid)
+def productExceptSelf(nums):
+    left = [0]*len(nums)
+    right = [0]*len(nums)
+    result = []
+
+    left[0] = 1
+    for i in range(1, len(nums)):
+        left[i] = left[i-1] * nums[i-1]
+        print(f'left[{i}] = {left[i-1]} * {nums[i-1]}')
+
+    right[len(nums)-1] = 1
+    for i in range(len(nums)-2, -1, -1):
+        right[i] = right[i+1]*nums[i+1]
+        print(f'right[{i}] = {right[i+1]} * {nums[i+1]}')
+
+    for i in range(0, len(nums)):
+        result.append(left[i]*right[i])
+
+    return result
+
+
+nums = [1, 2, 3, 4]
+result = productExceptSelf(nums)
 print(result)
