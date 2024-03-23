@@ -10,6 +10,7 @@ Example 2:
 Input: nums = [0]
 Output: [0]
 '''
+
 from output_decorator import output
 
 
